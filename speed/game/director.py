@@ -43,18 +43,16 @@ class Director:
         Args:
             Self (Director): An instance of Director
         """
-        # TODO: Since an * is being passed through when the enter key is pressed,
         user_letter = ""
         user_word = ""
         while not(user_letter == "*"):
             user_letter = self._input_service.get_letter()
             #turn individuals letters into a complete string or word to pass along
             user_word += user_letter
-
-            ##TODO: THIS LINE WILL SEND THE USERS WORD TO THE CLASS>METHOD WHERE IT WILL BE COMPARED
-
+            
             if user_letter == "*":
                 #this will call a class.method that will reset the input line to blank
+                ##TODO: THIS LINE WILL SEND THE USERS WORD TO THE CLASS>METHOD WHERE IT WILL BE COMPARED
                 pass
 
     def _do_updates(self):
