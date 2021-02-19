@@ -30,8 +30,8 @@ class Director:
             Self (Director): An instance of Director
         """
         while self._keep_playing == True:
-            self._get_inputs()
-            self._do_updates()
+            word = self._get_inputs()
+            self._do_updates(word)
             self._do_outputs()
             sleep(constants.FRAME_LENGTH)
 
@@ -49,23 +49,68 @@ class Director:
             user_letter = self._input_service.get_letter()
             #turn individuals letters into a complete string or word to pass along
             user_word += user_letter
-            
+
             if user_letter == "*":
                 #this will call a class.method that will reset the input line to blank
-                ##TODO: THIS LINE WILL SEND THE USERS WORD TO THE CLASS>METHOD WHERE IT WILL BE COMPARED
-                pass
+                if "*" in user_word:
+                    user_word.replace("*", "")
+                return user_word
 
-    def _do_updates(self):
-        pass
+    def _do_updates(self, word):
+        """Manages the game events that must be executed. In this case
+        it would be managing when a word hits the wall, how many losses
+        the user has and can have, and if they typed a correct word.
+
+        Args:
+            Self (Director): An instance of Director
+        """
+        self.check_win(word)
+        self.check_wall()
+        self.track_loss()
 
     def _do_outputs(self):
-        pass
+        """Outputs the important game information for each round of play. In 
+        this case, that means refreshing the screen, and drawing the necessary
+        words, score, and end game messages.
+
+        Args:
+            self (Director): An instance of Director.
+        """
+        self._output_service.clear_screen()
+
+        # TODO: AS ACTOR AND WORD ARE FINISHED I WILL UPDATE THIS CODE 
+        # TO CORRECTLY PASS THE WORDS AND SCORE TO OUTPUT_SERVICE
+        self._output_service.draw_actors(self._word)
+        self._output_service.draw_actor(self._score)
+
+        self._output_service.flush_buffer()
 
     def check_wall(self):
+        """This method will execute the necessary code to check and
+        track if a word has hit the right wall.
+
+        Args:
+            Self (Director): An instance of Director
+        """
         pass
 
-    def check_loss(self):
+    def track_loss(self):
+        """This method will run the necessary code when the end
+        of the game has been reached.
+
+        Args: 
+            Self (director): An instance of Director
+        """
         pass
 
-    def check_win(self):
-        pass
+    def check_win(self, word):
+        """This method will execute the portion of code that 
+        will compare the users word to all current words and 
+        update the score accordingly.
+
+        Args:
+            self (Director): An instance of Director
+            word: the word entered by the user.
+        """
+        #TODO: I WILL CHANGE THIS AS WE DECIDE HOW TO TRACK AND ADD THE SCORE
+        self._score.update_score(self._word.compare_words(word))
