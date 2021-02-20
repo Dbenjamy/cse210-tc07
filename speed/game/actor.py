@@ -1,5 +1,6 @@
 from game import constants
 from game.point import Point
+import random
 
 class Actor:
     """A visible, moveable thing that participates in the game. The responsibility of Actor is to keep track of its appearance, position 
@@ -58,9 +59,7 @@ class Actor:
         return self._velocity
     
     def move_next(self):
-        """Moves the actor to its next position according to its velocity. Will 
-        wrap the position from one side of the screen to the other when it 
-        reaches the boundary in either direction.
+        """Moves the actor to its next position according to its velocity.
         
         Args:
             self (Actor): an instance of Actor.
@@ -71,16 +70,29 @@ class Actor:
         y2 = self._velocity.get_y()
         x = 1 + (x1 + x2 - 1) % (constants.MAX_X - 1)
         y = 1 + (y1 + y2 - 1) % (constants.MAX_Y - 1)
-        position = Point(x, y)
-        self._position = position
+        
+        # As long as the next x position is less than the MAX_X
+        # then we will move the word right 
+        # otherwise, we will stop updating its postion so
+        # the word willl not wrap around the screen.
+        if x < constants.MAX_X:
+            position = Point(x, y)
+            self._position = position
     
-    def set_position(self, position):
+    def set_position(self, position, word_position):
         """Updates the actor's position to the given one.
         
         Args:
             self (Actor): An instance of Actor.
             position (Point): The given position.
         """
+        x, y = position
+        while True:
+            if y in word_position:
+                y = random.random.randint(1, MAX_Y)
+            else:
+                break
+        self.word_position.append(y)
         self._position = position
     
     def set_text(self, text):
