@@ -40,4 +40,5 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add names and emails here
+* Tyler Shellman, Robbie Swanson, Ben Davis, Moses Diaz
+* she17007@byui.edu
