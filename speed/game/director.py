@@ -1,7 +1,7 @@
 from time import sleep
 from game import constants
 from game.score import Score
-from game.word import Word
+from game.wordActor import WordActor
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -21,7 +21,7 @@ class Director:
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
-        self._word = Word()
+        self._word = WordActor()
 
     def start_game(self):
         """Controls the loop that executes each step of the game.
