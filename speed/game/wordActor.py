@@ -68,28 +68,22 @@ class WordActor:
         velocity = tail.get_velocity()
         self._add_segment(text, position, velocity)
     
-    def move_head(self, direction):
+    def move(self):
         """Moves the snake in the given direction.
 
         Args:
             self (Snake): An instance of snake.
             direction (Point): The direction to move.
         """
-        count = len(self._segments) - 1
-        for n in range(count, -1, -1):
-            segment = self._segments[n]
-            if n > 0:
-                leader = self._segments[n - 1]
-                velocity = leader.get_velocity()
-                segment.set_velocity(velocity)
-            else:
-                segment.set_velocity(direction)
-            segment.move_next()
+        for n in range(len(self._segments)):
+            self._segments[n]._position._x += 1
+
 
     def _choose_word(self):
         return random.choice(constants.LIBRARY)
 
     def compare_words(self,the_word):
+        the_word.replace("*", "")
         found = False
         for n in range(len(self._segments)):
             if the_word == self._segments[n]:
@@ -124,3 +118,12 @@ class WordActor:
             position = Point(x, y + 2*n)
             velocity = Point(1, 0)
             self._add_segment(position, velocity)
+
+    def reset(self, _wordActor):
+        """Resets a word on screen.
+
+        Args:
+            Self (wordActor): an instance of WordActor
+        """
+        _wordActor._text = random.choice(constants.LIBRARY)
+        _wordActor._position._x = 0
