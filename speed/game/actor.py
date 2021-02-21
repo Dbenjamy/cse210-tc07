@@ -78,21 +78,14 @@ class Actor:
         if x < constants.MAX_X:
             position = Point(x, y)
             self._position = position
-    
-    def set_position(self, position, word_position):
+
+    def set_position(self, position):
         """Updates the actor's position to the given one.
         
         Args:
             self (Actor): An instance of Actor.
             position (Point): The given position.
         """
-        x, y = position
-        while True:
-            if y in word_position:
-                y = random.random.randint(1, MAX_Y)
-            else:
-                break
-        self.word_position.append(y)
         self._position = position
     
     def set_text(self, text):
