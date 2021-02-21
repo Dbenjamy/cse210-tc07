@@ -120,4 +120,4 @@ class Director:
             self (Director): An instance of Director
             word: the word entered by the user.
         """
-        self._score.update_score(self._word.compare_words(word))
+        self._score.add_points(self._word.compare_words(word))

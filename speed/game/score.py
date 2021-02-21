@@ -31,6 +31,6 @@ class Score(Actor):
             points (integer): The points to add.
         """
 
-        ##TODO: Change this to accurately compute the score using a random num
-        self._points += points
+        if points == True:
+            self._points += random.randint(1,5)
         self.set_text(f"Score: {self._points}")
