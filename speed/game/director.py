@@ -12,14 +12,12 @@ class Director:
         Controller
     """
 
-    def __init__(self, input_service, output_service, screen):
+    def __init__(self, input_service, output_service):
         """Class constructor
 
         Args:
             self (Director): An instance of director
         """
-        
-        self.screen = screen
         self._input_service = input_service
         self._keep_playing = True
         self._output_service = output_service
