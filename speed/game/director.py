@@ -22,8 +22,7 @@ class Director:
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
-        self._word = WordActor()
-        
+        self._word = WordActor()        
 
     def start_game(self):
         """Controls the loop that executes each step of the game.
@@ -88,12 +87,13 @@ class Director:
         Args:
             Self (Director): An instance of Director
         """
-        # for n in list_actors:
         self.hit_wall = 0
-        if len(self._word) + self._word.get_x() > constants.MAX_X:
-            self.hit_wall += 1
-            self._word.reset(self._word)
-            ##TODO: Change to represent accurate indexes
+        for n in range(len(self._word._segments)):
+            if len(self._word._segments[n]._text) + self._word._segments[n]._position.get_x()> constants.MAX_X:
+                print(self._word._segments[n]._position.get_x())
+                self.hit_wall += 1
+                self._word.reset(self._word)
+                ##TODO: Change to represent accurate indexes
         
 
     def track_loss(self):
