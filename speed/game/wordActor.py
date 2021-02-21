@@ -89,7 +89,15 @@ class WordActor:
     def _choose_word(self):
         return random.choice(constants.LIBRARY)
 
-    def _add_segment(self, text, position, velocity):
+    def compare_words(self,the_word):
+        found = False
+        for n in range(len(self._segments)):
+            if the_word == self._segments[n]:
+                found = True
+                self.reset(self._segments[n])
+                return found
+
+    def _add_segment(self, position, velocity):
         """Adds a new segment to the snake using the given text, position and velocity.
 
         Args:
@@ -98,8 +106,9 @@ class WordActor:
             position (Point): The segment's position.
             velocity (Point): The segment's velocity.
         """
+        print("Whoa")
         segment = Actor()
-        segment.set_text(text)
+        segment.set_text(self._choose_word())
         segment.set_position(position)
         segment.set_velocity(velocity)
         self._segments.append(segment)
@@ -110,10 +119,9 @@ class WordActor:
         Args:
             self (Snake): an instance of Snake.
         """
-        x = int(constants.MAX_X / 2)
-        y = int(constants.MAX_Y / 2)
+        x = 0
+        y = 0
         for n in range(constants.STARTING_WORDS):
-            text = "8" if n == 0 else "#"
-            position = Point(x - n, y)
+            position = Point(x, y + 2*n)
             velocity = Point(1, 0)
-            self._add_segment(text, position, velocity)
+            self._add_segment(position, velocity)
