@@ -41,4 +41,4 @@ root                    (project root folder)
 ## Authors
 ---
 * Tyler Shellman, Robbie Swanson, Ben Davis, Moses Diaz
-* she17007@byui.edu
+* she17007@byui.edu, robdawg1@byui.edu
