@@ -50,7 +50,7 @@ class OutputService:
         Args:
             self (OutputService): An instance of OutputService.
             actors (list): The actors to render.
-        """ 
+        """
         for n in range(len(actors._segments)):
             self.draw_actor(actors._segments[n])
     
