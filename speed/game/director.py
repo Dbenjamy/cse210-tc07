@@ -118,5 +118,7 @@ class Director:
             word: the word entered by the user.
         """
         self._score.add_points(self._word.compare_words(self.user_word._text))
+        self.user_word._text = ""
+
         self._output_service.flush_buffer()
         self._output_service.clear_screen()
