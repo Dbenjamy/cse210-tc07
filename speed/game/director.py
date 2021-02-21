@@ -2,6 +2,7 @@ from time import sleep
 from game import constants
 from game.score import Score
 from game.wordActor import WordActor
+from game.point import Point
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -92,7 +93,13 @@ class Director:
         Args:
             Self (Director): An instance of Director
         """
-        pass
+        # for n in list_actors:
+        self.hit_wall = 0
+        if len(self._word) + self._word.get_x() > constants.MAX_X:
+            self.hit_wall += 1
+            self._word.reset(self._word)
+            ##TODO: Change to represent accurate indexes
+        
 
     def track_loss(self):
         """This method will run the necessary code when the end
@@ -101,7 +108,8 @@ class Director:
         Args: 
             Self (director): An instance of Director
         """
-        pass
+        if self.hit_wall >= 5:
+            self._keep_playing = False
 
     def check_win(self, word):
         """This method will execute the portion of code that 
@@ -112,5 +120,4 @@ class Director:
             self (Director): An instance of Director
             word: the word entered by the user.
         """
-        #TODO: I WILL CHANGE THIS AS WE DECIDE HOW TO TRACK AND ADD THE SCORE
         self._score.update_score(self._word.compare_words(word))
