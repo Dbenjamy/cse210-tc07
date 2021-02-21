@@ -12,17 +12,20 @@ class Director:
         Controller
     """
 
-    def __init__(self, input_service, output_service):
+    def __init__(self, input_service, output_service, screen):
         """Class constructor
 
         Args:
             self (Director): An instance of director
         """
+        
+        self.screen = screen
         self._input_service = input_service
         self._keep_playing = True
         self._output_service = output_service
         self._score = Score()
         self._word = WordActor()
+        
 
     def start_game(self):
         """Controls the loop that executes each step of the game.
@@ -30,8 +33,9 @@ class Director:
         Args: 
             Self (Director): An instance of Director
         """
+        
         while self._keep_playing == True:
-            word = "DOG"
+            word = self._get_inputs()
             self._do_updates(word)
             self._do_outputs()
             sleep(constants.FRAME_LENGTH)
@@ -45,17 +49,10 @@ class Director:
             Self (Director): An instance of Director
         """
         user_letter = ""
-        user_word = ""
-        while not(user_letter == "*"):
-            user_letter = self._input_service.get_letter()
-            #turn individuals letters into a complete string or word to pass along
-            user_word += user_letter
+        # user_word = ""
 
-            if user_letter == "*":
-                #this will call a class.method that will reset the input line to blank
-                if "*" in user_word:
-                    user_word.replace("*", "")
-                return user_word
+        user_letter = self._input_service.get_letter()
+        return user_letter
 
     def _do_updates(self, word):
         """Manages the game events that must be executed. In this case
