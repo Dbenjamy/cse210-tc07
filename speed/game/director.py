@@ -31,7 +31,7 @@ class Director:
             Self (Director): An instance of Director
         """
         while self._keep_playing == True:
-            word = self._get_inputs()
+            word = "DOG"
             self._do_updates(word)
             self._do_outputs()
             sleep(constants.FRAME_LENGTH)
