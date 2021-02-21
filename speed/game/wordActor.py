@@ -106,7 +106,6 @@ class WordActor:
             position (Point): The segment's position.
             velocity (Point): The segment's velocity.
         """
-        print("Whoa")
         segment = Actor()
         segment.set_text(self._choose_word())
         segment.set_position(position)
@@ -120,7 +119,7 @@ class WordActor:
             self (Snake): an instance of Snake.
         """
         x = 0
-        y = 0
+        y = 2
         for n in range(constants.STARTING_WORDS):
             position = Point(x, y + 2*n)
             velocity = Point(1, 0)
