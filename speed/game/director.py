@@ -25,7 +25,7 @@ class Director:
         self._score = Score()
         self._word = WordActor()     
         self.user_word = Actor()
-        self.user_word._position._y = constants.MAX_Y - 15
+        self.user_word._position._y = constants.MAX_Y + 1
 
     def start_game(self):
         """Controls the loop that executes each step of the game.
