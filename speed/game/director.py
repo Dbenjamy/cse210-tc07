@@ -51,7 +51,8 @@ class Director:
         user_letter = self._input_service.get_letter()
         if  user_letter == "*":
             self.check_win()
-        self.user_word.set_text(self.user_word._text + user_letter)
+        else:
+            self.user_word.set_text(self.user_word._text + user_letter)
 
     def _do_updates(self):
         """Manages the game events that must be executed. In this case

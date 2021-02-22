@@ -83,10 +83,9 @@ class WordActor:
         return random.choice(constants.LIBRARY)
 
     def compare_words(self,the_word):
-        the_word.replace("*", "")
         found = False
-        for n in range(len(self._segments)):
-            if the_word == self._segments[n]:
+        for n in range(constants.STARTING_WORDS):
+            if the_word == self._segments[n]._text:
                 found = True
                 self.reset(self._segments[n])
                 return found
